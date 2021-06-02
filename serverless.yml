@@ -1,0 +1,90 @@
+service: crm-web-serverless
+useDotenv: true
+variablesResolutionMode: 20210219
+provider:
+  lambdaHashingVersion: 20201221
+  name: aws
+  iam:
+    role: arn:aws:iam::${env:AWS_ID_ACCOUNT}:role/lambda-role
+  runtime: nodejs12.x
+  region: ${env:AWS_CURRENT_REGION}
+
+
+functions:
+  create_form:
+    handler: lambdas/create_form.handler
+    events:
+      - http:
+          path: formulario
+          method: post
+          cors: true
+
+  update_form:
+    handler: lambdas/update_form.handler
+    events:
+      - http:
+          path: formulario
+          method: put
+          cors: true
+
+
+  delete_form:
+    handler: lambdas/delete_form.handler
+    events:
+      - http:
+          path: formulario
+          method: delete
+          cors: true
+
+
+  list_form:
+    handler: lambdas/list_form.handler
+    events:
+      - http:
+          path: formulario
+          method: get
+          cors: true
+
+
+# # you can add CloudFormation resource templates here
+# resources:
+#  Resources:
+  
+#   MyRestApi:
+#     Type: AWS::ApiGateway::RestApi
+#     Properties:
+#       Name: 'CRM WEB REST API'
+  
+      
+  
+#   FormularioResource:
+#     Type: AWS::ApiGateway::Resource
+#     Properties:
+#       RestApiId: !Ref MyRestApi
+#       ParentId: { 'Fn::GetAtt': ['MyRestApi', 'RootResourceId'] }
+#       PathPart: formulario
+
+
+
+
+#   FormularioMethodCreate:
+#     Type: AWS::ApiGateway::Method
+#     Properties:
+#       HttpMethod: POST
+#       ResourceId: !Ref FormularioResource
+#       RestApiId: !Ref MyRestApi
+#       ApiKeyRequired: false
+#       AuthorizationType: "NONE"
+#       Integration:              
+#         IntegrationHttpMethod: POST
+#         Type: AWS
+#         Credentials: arn:aws:iam::${env:AWS_ID_ACCOUNT}:role/apigateway-role
+#         # Uri: arn:aws:lambda:sa-east-1:742104988707:function:teste
+        
+#         IntegrationResponses:
+#           - StatusCode: '200'
+#             ResponseTemplates:
+#               application/json: ''
+          
+#       MethodResponses:
+#         - StatusCode: '200'

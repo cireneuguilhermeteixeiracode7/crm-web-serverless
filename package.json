@@ -1,0 +1,14 @@
+{
+  "name": "crm-web-serverless",
+  "version": "1.0.0",
+  "description": "CRM WEB SERVERLESS",
+  "main": "create_form.js",
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cireneu Guilherme",
+  "license": "ISC"
+}
